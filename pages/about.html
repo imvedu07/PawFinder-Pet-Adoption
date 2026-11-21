@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | PawFinder</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+
+    <style>
+
+        /* ================= ABOUT PAGE ================= */
+
+        .about-page {
+            padding: 75px 30px 100px;
+        }
+
+        .about-container {
+            max-width: 1240px;
+            margin: auto;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 110px;
+        }
+
+        .about-hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(50px, 6vw, 76px);
+            line-height: 1;
+            font-weight: 500;
+            letter-spacing: -2px;
+        }
+
+        .about-hero h1 em {
+            color: var(--coral);
+            font-style: italic;
+        }
+
+        .about-hero-text {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+            margin-top: 25px;
+            max-width: 520px;
+        }
+
+        .about-hero-image {
+            height: 560px;
+            overflow: hidden;
+            border-radius: 30px 30px 160px 30px;
+        }
+
+        .about-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* ================= MISSION ================= */
+
+        .mission-section {
+            background: var(--green);
+            color: white;
+            border-radius: 28px;
+            padding: 70px;
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 70px;
+            align-items: center;
+            margin-bottom: 110px;
+        }
+
+        .mission-label {
+            color: var(--coral-light);
+            font-size: 10px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .mission-section h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+            line-height: 1.05;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .mission-section h2 em {
+            color: var(--coral-light);
+            font-style: italic;
+        }
+
+        .mission-section p {
+            color: rgba(255,255,255,0.65);
+            font-size: 13px;
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+
+        /* ================= VALUES ================= */
+
+        .values-header {
+            margin-bottom: 40px;
+        }
+
+        .values-header h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 50px;
+            line-height: 1;
+            font-weight: 500;
+        }
+
+        .values-header h2 em {
+            color: var(--coral);
+            font-style: italic;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 110px;
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(23,53,44,0.06);
+            transition: 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 40px rgba(23,53,44,0.09);
+        }
+
+        .value-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--cream-dark);
+            color: var(--coral);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .value-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .value-card p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+            margin-top: 10px;
+        }
+
+
+        /* ================= STATS ================= */
+
+        .about-stats {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 45px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin-bottom: 100px;
+        }
+
+        .about-stat {
+            text-align: center;
+            border-right: 1px solid var(--border);
+        }
+
+        .about-stat:last-child {
+            border-right: none;
+        }
+
+        .about-stat strong {
+            font-family: "Playfair Display", serif;
+            font-size: 36px;
+        }
+
+        .about-stat span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+
+        /* ================= CTA ================= */
+
+        .about-cta {
+            background: var(--cream-dark);
+            border-radius: 25px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .about-cta h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 43px;
+            line-height: 1.1;
+            font-weight: 500;
+        }
+
+        .about-cta h2 em {
+            color: var(--coral);
+            font-style: italic;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .about-hero {
+                gap: 45px;
+            }
+
+            .mission-section {
+                gap: 40px;
+                padding: 50px;
+            }
+
+        }
+
+
+        @media (max-width: 760px) {
+
+            .about-page {
+                padding: 55px 20px 80px;
+            }
+
+            .about-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-hero h1 {
+                font-size: 55px;
+            }
+
+            .about-hero-image {
+                height: 450px;
+            }
+
+            .mission-section {
+                grid-template-columns: 1fr;
+                padding: 40px 30px;
+                gap: 25px;
+            }
+
+            .mission-section h2 {
+                font-size: 40px;
+            }
+
+            .values-header h2 {
+                font-size: 42px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 0;
+            }
+
+            .about-stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .about-cta {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px 30px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .about-hero h1 {
+                font-size: 46px;
+            }
+
+            .about-hero-image {
+                height: 380px;
+            }
+
+            .mission-section h2 {
+                font-size: 35px;
+            }
+
+            .about-stat strong {
+                font-size: 28px;
+            }
+
+            .about-cta h2 {
+                font-size: 34px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+
+                <span class="logo-mark">P</span>
+
+                <span>PawFinder</span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="../index.html">
+                    Discover
+                </a>
+
+                <a href="pets.html">
+                    Find a Pet
+                </a>
+
+                <a href="gallery.html">
+                    Stories
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <a href="adoption.html" class="nav-button">
+
+                Start Adoption
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <section class="about-page">
+
+            <div class="about-container">
+
+
+                <!-- ================= HERO ================= -->
+
+                <div class="about-hero">
+
+                    <div>
+
+                        <p class="section-label">
+                            ABOUT PAWFINDER
+                        </p>
+
+                        <h1>
+                            More than
+                            <em>just adoption.</em>
+                        </h1>
+
+                        <p class="about-hero-text">
+
+                            PawFinder was created with one simple
+                            idea: every pet deserves the chance to
+                            find a loving home, and every person
+                            deserves the joy of finding a loyal
+                            companion.
+
+                        </p>
+
+                        <p class="about-hero-text">
+
+                            We bring pets, families and shelters
+                            together through a simple and friendly
+                            adoption experience.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="about-hero-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1000&q=85"
+                            alt="Happy dog outdoors">
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= MISSION ================= -->
+
+                <section class="mission-section">
+
+                    <div>
+
+                        <span class="mission-label">
+                            OUR MISSION
+                        </span>
+
+                        <h2>
+                            Give every pet
+                            <em>a place to belong.</em>
+                        </h2>
+
+                    </div>
+
+
+                    <div>
+
+                        <p>
+                            Many wonderful animals are waiting for
+                            someone to give them a second chance.
+                            PawFinder makes it easier for people to
+                            discover these pets and understand what
+                            adoption involves.
+                        </p>
+
+                        <p>
+                            Our goal is to make responsible pet
+                            adoption simple, transparent and
+                            accessible while helping shelters
+                            connect with caring families.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= VALUES ================= -->
+
+                <div class="values-header">
+
+                    <p class="section-label">
+                        WHAT WE BELIEVE
+                    </p>
+
+                    <h2>
+                        Built around
+                        <em>three things.</em>
+                    </h2>
+
+                </div>
+
+
+                <div class="values-grid">
+
+
+                    <!-- VALUE 1 -->
+
+                    <article class="value-card">
+
+                        <div class="value-icon">
+
+                            <i class="fa-solid fa-heart"></i>
+
+                        </div>
+
+                        <h3>
+                            Compassion
+                        </h3>
+
+                        <p>
+                            Every animal deserves kindness,
+                            patience and the opportunity to live
+                            in a safe and loving environment.
+                        </p>
+
+                    </article>
+
+
+                    <!-- VALUE 2 -->
+
+                    <article class="value-card">
+
+                        <div class="value-icon">
+
+                            <i class="fa-solid fa-house"></i>
+
+                        </div>
+
+                        <h3>
+                            Responsible Homes
+                        </h3>
+
+                        <p>
+                            We encourage thoughtful adoption by
+                            helping people understand the commitment
+                            of welcoming a pet into their home.
+                        </p>
+
+                    </article>
+
+
+                    <!-- VALUE 3 -->
+
+                    <article class="value-card">
+
+                        <div class="value-icon">
+
+                            <i class="fa-solid fa-people-group"></i>
+
+                        </div>
+
+                        <h3>
+                            Community
+                        </h3>
+
+                        <p>
+                            Shelters, volunteers, families and
+                            animal lovers can work together to
+                            create better futures for pets.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+
+                <!-- ================= STATS ================= -->
+
+                <div class="about-stats">
+
+                    <div class="about-stat">
+
+                        <strong>
+                            2,400+
+                        </strong>
+
+                        <span>
+                            Pets listed
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-stat">
+
+                        <strong>
+                            1,800+
+                        </strong>
+
+                        <span>
+                            Successful adoptions
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-stat">
+
+                        <strong>
+                            98
+                        </strong>
+
+                        <span>
+                            Partner shelters
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-stat">
+
+                        <strong>
+                            24/7
+                        </strong>
+
+                        <span>
+                            Online discovery
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= CTA ================= -->
+
+                <div class="about-cta">
+
+                    <div>
+
+                        <p class="section-label">
+                            READY TO MEET THEM?
+                        </p>
+
+                        <h2>
+                            Your new best friend
+                            <em>could be waiting.</em>
+                        </h2>
+
+                    </div>
+
+
+                    <a href="pets.html"
+                       class="primary-button">
+
+                        Find a Pet
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <a href="../index.html" class="logo footer-logo">
+
+                    <span class="logo-mark">P</span>
+
+                    <span>PawFinder</span>
+
+                </a>
+
+                <p>
+                    Connecting loving people with pets
+                    looking for a place to call home.
+                </p>
+
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Explore</h4>
+
+                <a href="pets.html">
+                    Find a Pet
+                </a>
+
+                <a href="gallery.html">
+                    Pet Gallery
+                </a>
+
+                <a href="about.html">
+                    About Us
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Get Involved</h4>
+
+                <a href="adoption.html">
+                    Adopt a Pet
+                </a>
+
+                <a href="gallery.html">
+                    Success Stories
+                </a>
+
+                <a href="#">
+                    Volunteer
+                </a>
+
+                <a href="#">
+                    Donate
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Contact</h4>
+
+                <a href="mailto:hello@pawfinder.com">
+                    hello@pawfinder.com
+                </a>
+
+                <a href="tel:+919876543210">
+                    +91 98765 43210
+                </a>
+
+                <span>
+                    Ahmedabad, Gujarat
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 PawFinder. All rights reserved.
+            </p>
+
+            <p>
+                Made with
+                <i class="fa-solid fa-heart"></i>
+                for pets.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

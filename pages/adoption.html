@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption Application | PawFinder</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .adoption-page {
+            padding: 70px 30px 100px;
+        }
+
+        .adoption-container {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .adoption-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 55px;
+        }
+
+        .adoption-header h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(50px, 6vw, 72px);
+            line-height: 1;
+            font-weight: 500;
+            letter-spacing: -2px;
+        }
+
+        .adoption-header h1 em {
+            color: var(--coral);
+            font-style: italic;
+        }
+
+        .adoption-header p:not(.section-label) {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+        .adoption-layout {
+            display: grid;
+            grid-template-columns: 0.75fr 1.5fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .adoption-side {
+            background: var(--green);
+            color: white;
+            border-radius: 22px;
+            padding: 30px;
+            position: sticky;
+            top: 25px;
+        }
+
+        .adoption-side h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.1;
+        }
+
+        .adoption-side h2 em {
+            color: var(--coral-light);
+            font-style: italic;
+        }
+
+        .adoption-side > p {
+            color: rgba(255,255,255,0.65);
+            font-size: 11px;
+            line-height: 1.8;
+            margin-top: 15px;
+        }
+
+        .process-list {
+            margin-top: 35px;
+        }
+
+        .process-item {
+            display: flex;
+            gap: 13px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .process-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--coral-light);
+        }
+
+        .process-item strong {
+            font-size: 11px;
+            display: block;
+        }
+
+        .process-item span {
+            color: rgba(255,255,255,0.5);
+            font-size: 9px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 22px;
+            padding: 38px;
+            border: 1px solid rgba(23,53,44,0.06);
+        }
+
+        .form-section {
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .form-section-number {
+            color: var(--coral);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .form-section-title h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 23px;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .required {
+            color: var(--coral);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 13px 14px;
+            background: var(--cream);
+            outline: none;
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            color: var(--text);
+            transition: 0.25s;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--coral);
+            background: white;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .radio-option input {
+            display: none;
+        }
+
+        .radio-option label {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 11px;
+            transition: 0.25s;
+        }
+
+        .radio-option input:checked + label {
+            background: var(--green);
+            color: white;
+            border-color: var(--green);
+        }
+
+        .agreement {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .agreement input {
+            margin-top: 3px;
+            accent-color: var(--coral);
+        }
+
+        .agreement label {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .submit-area {
+            margin-top: 25px;
+        }
+
+        .submit-button {
+            width: 100%;
+            border: none;
+            background: var(--green);
+            color: white;
+            padding: 16px;
+            border-radius: 30px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .submit-button:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 9px;
+            margin-top: 12px;
+        }
+
+        /* Friendly validation popup */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 39, 32, 0.58);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.25s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-box {
+            width: 100%;
+            max-width: 390px;
+            background: #fffdf9;
+            border-radius: 24px;
+            padding: 38px 30px 30px;
+            text-align: center;
+            position: relative;
+            transform: translateY(18px) scale(0.96);
+            transition: 0.25s ease;
+            box-shadow: 0 24px 70px rgba(0,0,0,0.2);
+        }
+
+        .popup-overlay.active .popup-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .popup-box.success {
+            border: 1px solid #d5e8dc;
+        }
+
+        .popup-box.error {
+            border: 1px solid #f2d8ce;
+        }
+
+        .popup-icon {
+            width: 66px;
+            height: 66px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+        }
+
+        .popup-box.success .popup-icon {
+            color: #245b43;
+            background: #e4f1e8;
+        }
+
+        .popup-box.error .popup-icon {
+            color: #d87559;
+            background: #fce9e1;
+        }
+
+        .popup-box h2 {
+            font-family: "Playfair Display", serif;
+            color: #17352c;
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .popup-box p {
+            color: #718078;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 13px;
+            right: 16px;
+            border: 0;
+            background: transparent;
+            color: #8b968f;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        .popup-action {
+            border: 0;
+            border-radius: 30px;
+            background: #17352c;
+            color: white;
+            padding: 12px 30px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .popup-action:hover {
+            background: #e67d61;
+        }
+
+        @media (max-width: 900px) {
+            .adoption-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .adoption-side {
+                position: static;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .adoption-page {
+                padding: 50px 20px 75px;
+            }
+
+            .adoption-header h1 {
+                font-size: 50px;
+            }
+
+            .application-card {
+                padding: 25px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .adoption-header h1 {
+                font-size: 43px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+
+            .radio-option {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+                <span class="logo-mark">P</span>
+                <span>PawFinder</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="../index.html">Discover</a>
+                <a href="pets.html">Find a Pet</a>
+                <a href="gallery.html">Stories</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <a href="adoption.html" class="nav-button">
+                Start Adoption
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="adoption-page">
+
+            <div class="adoption-container">
+
+                <div class="adoption-header">
+                    <p class="section-label">TAKE THE NEXT STEP</p>
+
+                    <h1>
+                        Start your
+                        <em>adoption story.</em>
+                    </h1>
+
+                    <p>
+                        Tell us a little about yourself and the
+                        kind of companion you're looking for.
+                        We'll help you take the next step towards
+                        welcoming a new friend into your home.
+                    </p>
+                </div>
+
+                <div class="adoption-layout">
+
+                    <!-- LEFT SIDE -->
+                    <aside class="adoption-side">
+
+                        <h2>
+                            A new friend.
+                            <em>A new beginning.</em>
+                        </h2>
+
+                        <p>
+                            Adoption is more than bringing a pet home.
+                            It's making a promise to love, care and
+                            stand by them for life.
+                        </p>
+
+                        <div class="process-list">
+
+                            <div class="process-item">
+                                <div class="process-number">01</div>
+                                <div>
+                                    <strong>Submit your application</strong>
+                                    <span>Tell us about yourself and your home.</span>
+                                </div>
+                            </div>
+
+                            <div class="process-item">
+                                <div class="process-number">02</div>
+                                <div>
+                                    <strong>Application review</strong>
+                                    <span>Our team will review your details.</span>
+                                </div>
+                            </div>
+
+                            <div class="process-item">
+                                <div class="process-number">03</div>
+                                <div>
+                                    <strong>Meet your companion</strong>
+                                    <span>Get to know your potential new friend.</span>
+                                </div>
+                            </div>
+
+                            <div class="process-item">
+                                <div class="process-number">04</div>
+                                <div>
+                                    <strong>Welcome them home</strong>
+                                    <span>Begin a beautiful journey together.</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                    <!-- APPLICATION FORM -->
+                    <div class="application-card">
+
+                        <!-- SECTION 1 -->
+                        <div class="form-section">
+
+                            <div class="form-section-title">
+                                <span class="form-section-number">01</span>
+                                <h2>Your details</h2>
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="fullName">
+                                        Full name <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="fullName"
+                                        name="fullName"
+                                        placeholder="Enter your full name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">
+                                        Email address <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="you@example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">
+                                        Phone number <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        placeholder="10-digit mobile number">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="occupation">Occupation</label>
+                                    <input
+                                        type="text"
+                                        id="occupation"
+                                        name="occupation"
+                                        placeholder="Your occupation">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="city">
+                                        City <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="city"
+                                        name="city"
+                                        placeholder="Enter your city">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="homeType">Your home type</label>
+                                    <select id="homeType" name="homeType">
+                                        <option value="">Select home type</option>
+                                        <option value="Apartment">Apartment</option>
+                                        <option value="Independent House">Independent House</option>
+                                        <option value="Villa">Villa</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- SECTION 2 -->
+                        <div class="form-section">
+
+                            <div class="form-section-title">
+                                <span class="form-section-number">02</span>
+                                <h2>Your living space</h2>
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group full">
+                                    <label>
+                                        Do you have an outdoor space?
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <div class="radio-group">
+
+                                        <div class="radio-option">
+                                            <input
+                                                type="radio"
+                                                id="outdoorYes"
+                                                name="outdoor"
+                                                value="yes">
+                                            <label for="outdoorYes">Yes</label>
+                                        </div>
+
+                                        <div class="radio-option">
+                                            <input
+                                                type="radio"
+                                                id="outdoorNo"
+                                                name="outdoor"
+                                                value="no">
+                                            <label for="outdoorNo">No</label>
+                                        </div>
+
+                                        <div class="radio-option">
+                                            <input
+                                                type="radio"
+                                                id="outdoorSometimes"
+                                                name="outdoor"
+                                                value="sometimes">
+                                            <label for="outdoorSometimes">Shared Space</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- SECTION 3 -->
+                        <div class="form-section">
+
+                            <div class="form-section-title">
+                                <span class="form-section-number">03</span>
+                                <h2>About your adoption</h2>
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="form-group">
+                                    <label for="pet">
+                                        Which pet are you interested in?
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <select id="pet">
+                                        <option value="">Select a pet</option>
+                                        <option value="Bruno">Bruno</option>
+                                        <option value="Luna">Luna</option>
+                                        <option value="Milo">Milo</option>
+                                        <option value="Daisy">Daisy</option>
+                                        <option value="Oscar">Oscar</option>
+                                        <option value="Nala">Nala</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="experience">
+                                        Previous pet experience
+                                    </label>
+
+                                    <select id="experience">
+                                        <option value="">Select an option</option>
+                                        <option>I currently have pets</option>
+                                        <option>I had pets before</option>
+                                        <option>This will be my first pet</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group full">
+                                    <label for="reason">
+                                        Why would you like to adopt?
+                                        <span class="required">*</span>
+                                    </label>
+
+                                    <textarea
+                                        id="reason"
+                                        name="reason"
+                                        placeholder="Tell us why you'd like to welcome a pet into your family..."></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- AGREEMENT -->
+                        <div class="agreement">
+
+                            <input
+                                type="checkbox"
+                                id="agreement"
+                                name="agreement">
+
+                            <label for="agreement">
+                                I confirm that the information provided
+                                is accurate and I understand that pet
+                                adoption is a long-term responsibility.
+                            </label>
+
+                        </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <div class="submit-area">
+
+                            <button
+                                type="button"
+                                id="submitApplication"
+                                class="submit-button">
+
+                                Submit Adoption Application
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+                            <p class="form-note">
+                                Your information will only be used
+                                for the adoption process.
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="../index.html" class="logo footer-logo">
+                    <span class="logo-mark">P</span>
+                    <span>PawFinder</span>
+                </a>
+
+                <p>
+                    Connecting loving people with pets
+                    looking for a place to call home.
+                </p>
+
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="pets.html">Find a Pet</a>
+                <a href="gallery.html">Pet Gallery</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Get Involved</h4>
+                <a href="adoption.html">Adopt a Pet</a>
+                <a href="gallery.html">Success Stories</a>
+                <a href="#">Volunteer</a>
+                <a href="#">Donate</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <a href="mailto:hello@pawfinder.com">hello@pawfinder.com</a>
+                <a href="tel:+919876543210">+91 98765 43210</a>
+                <span>Ahmedabad, Gujarat</span>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>© 2026 PawFinder. All rights reserved.</p>
+
+            <p>
+                Made with
+                <i class="fa-solid fa-heart"></i>
+                for pets.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- FRIENDLY VALIDATION POPUP -->
+    <div class="popup-overlay" id="popupOverlay" aria-hidden="true">
+
+        <div class="popup-box" id="popupBox" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+
+            <button
+                type="button"
+                class="popup-close"
+                onclick="closePopup()"
+                aria-label="Close popup">
+                &times;
+            </button>
+
+            <div class="popup-icon" id="popupIcon">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+
+            <h2 id="popupTitle">A little note</h2>
+
+            <p id="popupMessage"></p>
+
+            <button
+                type="button"
+                class="popup-action"
+                onclick="closePopup()">
+                Got it <i class="fa-solid fa-heart"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT FORM VALIDATION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const submitButton = document.getElementById("submitApplication");
+            const popupOverlay = document.getElementById("popupOverlay");
+
+            // Show custom popup
+            function showPopup(type, title, message) {
+
+                const popupBox = document.getElementById("popupBox");
+                const popupIcon = document.getElementById("popupIcon");
+
+                popupBox.className = "popup-box " + type;
+
+                popupIcon.innerHTML = type === "success"
+                    ? '<i class="fa-solid fa-heart"></i>'
+                    : '<i class="fa-solid fa-paw"></i>';
+
+                document.getElementById("popupTitle").textContent = title;
+                document.getElementById("popupMessage").textContent = message;
+
+                popupOverlay.classList.add("active");
+                popupOverlay.setAttribute("aria-hidden", "false");
+            }
+
+            // Close popup
+            window.closePopup = function () {
+
+                popupOverlay.classList.remove("active");
+                popupOverlay.setAttribute("aria-hidden", "true");
+
+            };
+
+            // Close popup when clicking outside it
+            popupOverlay.addEventListener("click", function (event) {
+
+                if (event.target === popupOverlay) {
+                    window.closePopup();
+                }
+
+            });
+
+            // Close popup with Escape key
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+                    window.closePopup();
+                }
+
+            });
+
+            // Form validation
+            submitButton.addEventListener("click", function () {
+
+                const name = document.getElementById("fullName").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const phone = document.getElementById("phone").value.trim();
+                const city = document.getElementById("city").value.trim();
+                const pet = document.getElementById("pet").value;
+                const reason = document.getElementById("reason").value.trim();
+
+                const agreement = document.getElementById("agreement").checked;
+
+                const outdoor = document.querySelector(
+                    'input[name="outdoor"]:checked'
+                );
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const phonePattern = /^[6-9]\d{9}$/;
+
+                // Validate name
+                if (name.length < 3) {
+
+                    showPopup(
+                        "error",
+                        "Oops, little mistake!",
+                        "Please enter your full name (at least 3 characters). 😊"
+                    );
+
+                    document.getElementById("fullName").focus();
+                    return;
+                }
+
+                // Validate email
+                if (!emailPattern.test(email)) {
+
+                    showPopup(
+                        "error",
+                        "Check your email!",
+                        "Please enter a valid email address so we can reach you. 💌"
+                    );
+
+                    document.getElementById("email").focus();
+                    return;
+                }
+
+                // Validate phone number
+                const cleanPhone = phone.replace(/\D/g, "");
+
+                if (!phonePattern.test(cleanPhone)) {
+
+                    showPopup(
+                        "error",
+                        "One more thing!",
+                        "Please enter a valid 10-digit Indian mobile number. 📱"
+                    );
+
+                    document.getElementById("phone").focus();
+                    return;
+                }
+
+                // Validate city
+                if (city.length < 2) {
+
+                    showPopup(
+                        "error",
+                        "Where are you from?",
+                        "Please enter your city. 🏡"
+                    );
+
+                    document.getElementById("city").focus();
+                    return;
+                }
+
+                // Validate outdoor preference
+                if (!outdoor) {
+
+                    showPopup(
+                        "error",
+                        "Choose your space!",
+                        "Please select your outdoor space preference. 🌿"
+                    );
+
+                    return;
+                }
+
+                // Validate pet selection
+                if (pet === "") {
+
+                    showPopup(
+                        "error",
+                        "Pick your new friend!",
+                        "Please select the pet you are interested in adopting. 🐾"
+                    );
+
+                    document.getElementById("pet").focus();
+                    return;
+                }
+
+                // Validate adoption reason
+                if (reason.length < 10) {
+
+                    showPopup(
+                        "error",
+                        "Tell us a little more!",
+                        "Please explain why you want to adopt (at least 10 characters). ❤️"
+                    );
+
+                    document.getElementById("reason").focus();
+                    return;
+                }
+
+                // Validate agreement
+                if (!agreement) {
+
+                    showPopup(
+                        "error",
+                        "Almost there!",
+                        "Please accept the adoption agreement before submitting. 💚"
+                    );
+
+                    document.getElementById("agreement").focus();
+                    return;
+                }
+
+                // Successful validation
+                showPopup(
+                    "success",
+                    "Yay, " + name + "!",
+                    "Your adoption application has passed validation successfully. Thank you for opening your heart to a pet! 🐾"
+                );
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meet Bruno | PawFinder</title>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+
+    <style>
+
+        /* ================= PET DETAILS PAGE ================= */
+
+        .details-page {
+            padding: 70px 30px 100px;
+        }
+
+        .details-container {
+            max-width: 1240px;
+            margin: auto;
+        }
+
+
+        /* ================= BREADCRUMB ================= */
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 35px;
+        }
+
+        .breadcrumb a {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .breadcrumb i {
+            font-size: 8px;
+            color: var(--coral);
+        }
+
+
+        /* ================= MAIN DETAILS ================= */
+
+        .pet-details-layout {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 75px;
+            align-items: start;
+        }
+
+
+        /* ================= PET IMAGE ================= */
+
+        .details-image-wrapper {
+            position: relative;
+        }
+
+        .details-image {
+            height: 650px;
+            overflow: hidden;
+            border-radius: 30px;
+        }
+
+        .details-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-available {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: var(--green);
+            padding: 9px 15px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .details-heart {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            color: var(--green);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .details-heart:hover {
+            background: var(--coral);
+            color: white;
+        }
+
+
+        /* ================= DETAILS CONTENT ================= */
+
+        .details-content {
+            padding-top: 10px;
+        }
+
+        .details-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--coral);
+            margin-bottom: 15px;
+        }
+
+        .details-content h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 70px;
+            line-height: 0.95;
+            font-weight: 500;
+            letter-spacing: -2px;
+        }
+
+        .details-content h1 em {
+            display: block;
+            color: var(--coral);
+            font-style: italic;
+        }
+
+        .breed {
+            color: var(--muted);
+            font-size: 15px;
+            margin-top: 18px;
+        }
+
+
+        /* ================= QUICK INFO ================= */
+
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 35px;
+        }
+
+        .info-box {
+            background: var(--cream-dark);
+            border-radius: 14px;
+            padding: 17px 12px;
+            text-align: center;
+        }
+
+        .info-box i {
+            color: var(--coral);
+            margin-bottom: 8px;
+        }
+
+        .info-box strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .info-box span {
+            display: block;
+            color: var(--muted);
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+
+        /* ================= DESCRIPTION ================= */
+
+        .pet-description {
+            margin-top: 35px;
+        }
+
+        .pet-description h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .pet-description p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+
+        /* ================= PERSONALITY ================= */
+
+        .personality {
+            margin-top: 28px;
+        }
+
+        .personality h3 {
+            font-size: 12px;
+            margin-bottom: 13px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            padding: 8px 13px;
+            border-radius: 30px;
+            font-size: 10px;
+            color: var(--green);
+        }
+
+
+        /* ================= ADOPTION BUTTON ================= */
+
+        .adopt-box {
+            margin-top: 35px;
+            background: var(--green);
+            border-radius: 18px;
+            padding: 22px;
+            color: white;
+        }
+
+        .adopt-box p {
+            color: rgba(255,255,255,0.65);
+            font-size: 10px;
+            margin-bottom: 13px;
+        }
+
+        .adopt-button {
+            width: 100%;
+            border: none;
+            background: var(--coral);
+            color: white;
+            padding: 15px;
+            border-radius: 30px;
+            font-family: "DM Sans", sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .adopt-button:hover {
+            background: white;
+            color: var(--green);
+        }
+
+
+        /* ================= STORY STRIP ================= */
+
+        .story-strip {
+            margin-top: 90px;
+            background: var(--cream-dark);
+            border-radius: 25px;
+            padding: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .story-strip h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            font-weight: 500;
+        }
+
+        .story-strip h2 em {
+            color: var(--coral);
+        }
+
+        .story-strip p {
+            max-width: 480px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .pet-details-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .details-image {
+                height: 550px;
+            }
+
+            .details-content h1 {
+                font-size: 55px;
+            }
+
+        }
+
+
+        @media (max-width: 760px) {
+
+            .details-page {
+                padding: 50px 20px 75px;
+            }
+
+            .pet-details-layout {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .details-image {
+                height: 500px;
+            }
+
+            .details-content h1 {
+                font-size: 60px;
+            }
+
+            .story-strip {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 30px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .details-image {
+                height: 420px;
+            }
+
+            .details-content h1 {
+                font-size: 50px;
+            }
+
+            .quick-info {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .info-box {
+                padding: 14px 6px;
+            }
+
+            .story-strip h2 {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+
+                <span class="logo-mark">P</span>
+
+                <span>PawFinder</span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="../index.html">
+                    Discover
+                </a>
+
+                <a href="pets.html">
+                    Find a Pet
+                </a>
+
+                <a href="gallery.html">
+                    Stories
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <a href="adoption.html" class="nav-button">
+
+                Start Adoption
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= PAGE ================= -->
+
+    <main>
+
+        <section class="details-page">
+
+            <div class="details-container">
+
+
+                <!-- ================= BREADCRUMB ================= -->
+
+                <div class="breadcrumb">
+
+                    <a href="../index.html">
+                        Home
+                    </a>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <a href="pets.html">
+                        Find a Pet
+                    </a>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <span>Bruno</span>
+
+                </div>
+
+
+                <!-- ================= MAIN DETAILS ================= -->
+
+                <div class="pet-details-layout">
+
+
+                    <!-- ================= IMAGE ================= -->
+
+                    <div class="details-image-wrapper">
+
+                        <div class="details-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=85"
+                                alt="Bruno the Labrador">
+
+                        </div>
+
+
+                        <span class="details-available">
+                            Available for adoption
+                        </span>
+
+
+                        <button class="details-heart">
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- ================= CONTENT ================= -->
+
+                    <div class="details-content">
+
+                        <p class="details-label">
+                            MEET YOUR NEW COMPANION
+                        </p>
+
+
+                        <h1>
+
+                            Meet
+
+                            <em>Bruno.</em>
+
+                        </h1>
+
+
+                        <p class="breed">
+                            Labrador Retriever · 2 years old
+                        </p>
+
+
+                        <!-- ================= QUICK INFO ================= -->
+
+                        <div class="quick-info">
+
+
+                            <div class="info-box">
+
+                                <i class="fa-solid fa-mars"></i>
+
+                                <strong>Male</strong>
+
+                                <span>Gender</span>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <i class="fa-solid fa-calendar"></i>
+
+                                <strong>2 Years</strong>
+
+                                <span>Age</span>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                <strong>Ahmedabad</strong>
+
+                                <span>Location</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= DESCRIPTION ================= -->
+
+                        <div class="pet-description">
+
+                            <h2>
+                                Bruno's story
+                            </h2>
+
+                            <p>
+                                Bruno is a friendly and playful Labrador
+                                who loves being around people. He enjoys
+                                morning walks, playing outdoors and getting
+                                plenty of belly rubs.
+                            </p>
+
+                            <p style="margin-top: 10px;">
+
+                                He is looking for a caring family who can
+                                give him plenty of love, attention and a
+                                comfortable place to call home.
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- ================= PERSONALITY ================= -->
+
+                        <div class="personality">
+
+                            <h3>
+                                Bruno's personality
+                            </h3>
+
+
+                            <div class="tags">
+
+                                <span class="tag">
+                                    Friendly
+                                </span>
+
+                                <span class="tag">
+                                    Playful
+                                </span>
+
+                                <span class="tag">
+                                    Loyal
+                                </span>
+
+                                <span class="tag">
+                                    Active
+                                </span>
+
+                                <span class="tag">
+                                    Family-friendly
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= ADOPTION ================= -->
+
+                        <div class="adopt-box">
+
+                            <p>
+                                Think Bruno could be your perfect match?
+                            </p>
+
+                            <a
+                                href="adoption.html"
+                                class="adopt-button">
+
+                                Start Adoption Application
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= STORY STRIP ================= -->
+
+                <div class="story-strip">
+
+                    <div>
+
+                        <p class="section-label">
+                            A LITTLE REMINDER
+                        </p>
+
+                        <h2>
+
+                            Every pet deserves
+
+                            <em>
+                                a second chance.
+                            </em>
+
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+
+                        When you adopt, you're not just bringing
+                        a pet home. You're giving an animal the
+                        opportunity to become part of a family
+                        and creating a friendship that can last
+                        for years.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <a href="../index.html" class="logo footer-logo">
+
+                    <span class="logo-mark">P</span>
+
+                    <span>PawFinder</span>
+
+                </a>
+
+                <p>
+
+                    Connecting loving people with pets
+                    looking for a place to call home.
+
+                </p>
+
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPLORE -->
+
+            <div class="footer-column">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="pets.html">
+                    Find a Pet
+                </a>
+
+                <a href="gallery.html">
+                    Pet Gallery
+                </a>
+
+                <a href="about.html">
+                    About Us
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <!-- GET INVOLVED -->
+
+            <div class="footer-column">
+
+                <h4>
+                    Get Involved
+                </h4>
+
+                <a href="adoption.html">
+                    Adopt a Pet
+                </a>
+
+                <a href="gallery.html">
+                    Success Stories
+                </a>
+
+                <a href="#">
+                    Volunteer
+                </a>
+
+                <a href="#">
+                    Donate
+                </a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <a href="mailto:hello@pawfinder.com">
+                    hello@pawfinder.com
+                </a>
+
+                <a href="tel:+919876543210">
+                    +91 98765 43210
+                </a>
+
+                <span>
+                    Ahmedabad, Gujarat
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 PawFinder. All rights reserved.
+            </p>
+
+            <p>
+
+                Made with
+
+                <i class="fa-solid fa-heart"></i>
+
+                for pets.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= PET DETAILS JAVASCRIPT ================= -->
+
+    <script>
+
+        const pets = {
+
+            bruno: {
+
+                name: "Bruno",
+
+                breed: "Labrador Retriever",
+
+                age: "2 Years",
+
+                location: "Ahmedabad",
+
+                gender: "Male",
+
+                image:
+                    "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1000&q=85",
+
+                description1:
+                    "Bruno is a friendly and playful Labrador who loves being around people. He enjoys morning walks, playing outdoors and getting plenty of belly rubs.",
+
+                description2:
+                    "He is looking for a caring family who can give him plenty of love, attention and a comfortable place to call home.",
+
+                personality: [
+                    "Friendly",
+                    "Playful",
+                    "Loyal",
+                    "Active",
+                    "Family-friendly"
+                ]
+
+            },
+
+
+            luna: {
+
+                name: "Luna",
+
+                breed: "Domestic Shorthair",
+
+                age: "1 Year",
+
+                location: "Surat",
+
+                gender: "Female",
+
+                image:
+                    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1000&q=85",
+
+                description1:
+                    "Luna is a gentle and affectionate cat who enjoys quiet spaces, soft cuddles and spending time with people.",
+
+                description2:
+                    "She would love a caring home where she can feel safe, comfortable and loved.",
+
+                personality: [
+                    "Gentle",
+                    "Affectionate",
+                    "Calm",
+                    "Curious",
+                    "Loving"
+                ]
+
+            },
+
+
+            milo: {
+
+                name: "Milo",
+
+                breed: "Beagle Mix",
+
+                age: "3 Years",
+
+                location: "Vadodara",
+
+                gender: "Male",
+
+                image:
+                    "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1000&q=85",
+
+                description1:
+                    "Milo is an energetic and cheerful Beagle mix who loves outdoor adventures, walks and playing with his favorite people.",
+
+                description2:
+                    "He is looking for an active and loving family who can give him plenty of attention and companionship.",
+
+                personality: [
+                    "Energetic",
+                    "Playful",
+                    "Friendly",
+                    "Active",
+                    "Loyal"
+                ]
+
+            },
+
+
+            daisy: {
+
+                name: "Daisy",
+
+                breed: "Golden Retriever",
+
+                age: "4 Years",
+
+                location: "Rajkot",
+
+                gender: "Female",
+
+                image:
+                    "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1000&q=85",
+
+                description1:
+                    "Daisy is a sweet and affectionate Golden Retriever who loves people, gentle walks and spending time with her family.",
+
+                description2:
+                    "She is looking for a warm and caring home where she can be part of the family.",
+
+                personality: [
+                    "Sweet",
+                    "Friendly",
+                    "Gentle",
+                    "Loving",
+                    "Family-friendly"
+                ]
+
+            },
+
+
+            oscar: {
+
+                name: "Oscar",
+
+                breed: "Golden Mix",
+
+                age: "2 Years",
+
+                location: "Ahmedabad",
+
+                gender: "Male",
+
+                image:
+                    "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1000&q=85",
+
+                description1:
+                    "Oscar is a cheerful and lovable dog who enjoys playtime, walks and being around people.",
+
+                description2:
+                    "He is looking for a loving family who can give him attention, exercise and a comfortable home.",
+
+                personality: [
+                    "Cheerful",
+                    "Playful",
+                    "Loyal",
+                    "Active",
+                    "Friendly"
+                ]
+
+            },
+
+
+            nala: {
+
+                name: "Nala",
+
+                breed: "Tabby Cat",
+
+                age: "2 Years",
+
+                location: "Surat",
+
+                gender: "Female",
+
+                image:
+                    "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=1000&q=85",
+
+                description1:
+                    "Nala is a curious and affectionate tabby cat who enjoys relaxing in cozy spaces and spending time with people.",
+
+                description2:
+                    "She is looking for a peaceful and loving home where she can feel safe and cared for.",
+
+                personality: [
+                    "Curious",
+                    "Calm",
+                    "Affectionate",
+                    "Gentle",
+                    "Loving"
+                ]
+
+            }
+
+        };
+
+
+        /* ================= GET PET FROM URL ================= */
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        const petId =
+            urlParams.get("pet") || "bruno";
+
+
+        const selectedPet =
+            pets[petId] || pets.bruno;
+
+
+        /* ================= PAGE TITLE ================= */
+
+        document.title =
+            `Meet ${selectedPet.name} | PawFinder`;
+
+
+        /* ================= BREADCRUMB ================= */
+
+        document.querySelector(
+            ".breadcrumb span"
+        ).textContent = selectedPet.name;
+
+
+        /* ================= IMAGE ================= */
+
+        const petImage =
+            document.querySelector(".details-image img");
+
+        petImage.src =
+            selectedPet.image;
+
+        petImage.alt =
+            `${selectedPet.name} the ${selectedPet.breed}`;
+
+
+        /* ================= NAME ================= */
+
+        document.querySelector(
+            ".details-content h1 em"
+        ).textContent =
+            `${selectedPet.name}.`;
+
+
+        /* ================= BREED + AGE ================= */
+
+        document.querySelector(
+            ".breed"
+        ).textContent =
+            `${selectedPet.breed} · ${selectedPet.age.toLowerCase()}`;
+
+
+        /* ================= QUICK INFORMATION ================= */
+
+        const infoBoxes =
+            document.querySelectorAll(".info-box");
+
+
+        infoBoxes[0]
+            .querySelector("strong")
+            .textContent =
+            selectedPet.gender;
+
+
+        infoBoxes[1]
+            .querySelector("strong")
+            .textContent =
+            selectedPet.age;
+
+
+        infoBoxes[2]
+            .querySelector("strong")
+            .textContent =
+            selectedPet.location;
+
+
+        /* ================= STORY ================= */
+
+        document.querySelector(
+            ".pet-description h2"
+        ).textContent =
+            `${selectedPet.name}'s story`;
+
+
+        const descriptionParagraphs =
+            document.querySelectorAll(
+                ".pet-description p"
+            );
+
+
+        descriptionParagraphs[0].textContent =
+            selectedPet.description1;
+
+
+        descriptionParagraphs[1].textContent =
+            selectedPet.description2;
+
+
+        /* ================= PERSONALITY ================= */
+
+        document.querySelector(
+            ".personality h3"
+        ).textContent =
+            `${selectedPet.name}'s personality`;
+
+
+        const tagsContainer =
+            document.querySelector(".tags");
+
+
+        tagsContainer.innerHTML = "";
+
+
+        selectedPet.personality.forEach(
+            function(trait) {
+
+                const tag =
+                    document.createElement("span");
+
+                tag.className = "tag";
+
+                tag.textContent = trait;
+
+                tagsContainer.appendChild(tag);
+
+            }
+        );
+
+
+        /* ================= ADOPTION MESSAGE ================= */
+
+        document.querySelector(
+            ".adopt-box p"
+        ).textContent =
+            `Think ${selectedPet.name} could be your perfect match?`;
+
+
+    </script>
+
+
+</body>
+
+</html>

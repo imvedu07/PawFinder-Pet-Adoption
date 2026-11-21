@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Pet | PawFinder</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .pets-page { padding:75px 30px 100px; }
+        .pets-container { max-width:1240px; margin:auto; }
+        .pets-intro { display:flex; justify-content:space-between; align-items:end; gap:40px; margin-bottom:45px; }
+        .pets-intro h1 { font-family:"Playfair Display",serif; font-size:clamp(50px,6vw,75px); line-height:1; letter-spacing:-2px; font-weight:500; max-width:700px; }
+        .pets-intro h1 em { color:var(--coral); }
+        .pets-intro-text { max-width:350px; color:var(--muted); font-size:14px; line-height:1.8; }
+
+        .pet-search-box { background:var(--green); padding:22px; border-radius:20px; display:grid; grid-template-columns:1.5fr 1fr 1fr auto; gap:12px; margin-bottom:55px; }
+        .search-field { background:white; border-radius:12px; padding:14px 17px; display:flex; align-items:center; gap:12px; }
+        .search-field i { color:var(--coral); }
+        .search-field input,.search-field select { border:none; outline:none; width:100%; background:transparent; font-family:"DM Sans",sans-serif; font-size:12px; color:var(--text); }
+        .search-submit { border:none; background:var(--coral); color:white; border-radius:12px; padding:0 24px; cursor:pointer; font-weight:700; }
+
+        .filter-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:25px; }
+        .filter-buttons { display:flex; gap:9px; flex-wrap:wrap; }
+        .filter-button { border:1px solid var(--border); background:transparent; padding:10px 17px; border-radius:30px; font-size:11px; cursor:pointer; color:var(--muted); }
+        .filter-button.active,.filter-button:hover { background:var(--green); color:white; border-color:var(--green); }
+        .pet-count { color:var(--muted); font-size:12px; }
+
+        .pets-page-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; }
+        .find-pet-card { background:white; border-radius:20px; overflow:hidden; border:1px solid rgba(23,53,44,.06); transition:.35s; }
+        .find-pet-card:hover { transform:translateY(-7px); box-shadow:0 20px 45px rgba(23,53,44,.10); }
+        .find-pet-image { height:300px; position:relative; overflow:hidden; }
+        .find-pet-image img { width:100%; height:100%; object-fit:cover; transition:.5s; }
+        .find-pet-card:hover .find-pet-image img { transform:scale(1.05); }
+        .available-tag { position:absolute; top:15px; left:15px; background:white; color:var(--green); padding:7px 12px; border-radius:30px; font-size:10px; font-weight:700; }
+        .heart-button { position:absolute; top:15px; right:15px; width:38px; height:38px; border:0; border-radius:50%; background:white; color:var(--green); cursor:pointer; }
+        .find-pet-info { padding:22px; }
+        .find-pet-top { display:flex; justify-content:space-between; align-items:start; }
+        .find-pet-top h3 { font-family:"Playfair Display",serif; font-size:25px; }
+        .find-pet-top p { color:var(--muted); font-size:11px; margin-top:2px; }
+        .age-badge { background:var(--cream); padding:5px 10px; border-radius:20px; font-size:10px; color:var(--green); }
+        .find-pet-details { display:flex; gap:17px; padding:17px 0; border-bottom:1px solid var(--border); }
+        .find-pet-details span { color:var(--muted); font-size:10px; }
+        .find-pet-details i { color:var(--coral); margin-right:4px; }
+        .view-pet { margin-top:16px; display:flex; justify-content:space-between; font-size:11px; font-weight:700; }
+        .view-pet i { color:var(--coral); }
+        .no-results { display:none; text-align:center; padding:45px; color:var(--muted); grid-column:1/-1; }
+
+        @media(max-width:1000px) {
+            .pet-search-box { grid-template-columns:1fr 1fr; }
+            .pets-page-grid { grid-template-columns:repeat(2,1fr); }
+        }
+        @media(max-width:760px) {
+            .pets-page { padding:55px 20px 80px; }
+            .pets-intro { flex-direction:column; align-items:start; }
+            .pets-intro h1 { font-size:52px; }
+            .pet-search-box { grid-template-columns:1fr; padding:16px; }
+            .search-submit { padding:15px; }
+            .filter-row { align-items:start; flex-direction:column; gap:18px; }
+            .pets-page-grid { grid-template-columns:1fr; }
+            .find-pet-image { height:380px; }
+        }
+        @media(max-width:450px) {
+            .pets-intro h1 { font-size:44px; }
+            .find-pet-image { height:330px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo"><span class="logo-mark">P</span><span>PawFinder</span></a>
+        <nav class="nav-links">
+            <a href="../index.html">Discover</a>
+            <a href="pets.html">Find a Pet</a>
+            <a href="gallery.html">Stories</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <a href="adoption.html" class="nav-button">Start Adoption <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</header>
+
+<main>
+<section class="pets-page">
+<div class="pets-container">
+
+    <div class="pets-intro">
+        <div>
+            <p class="section-label">FIND YOUR COMPANION</p>
+            <h1>There is someone <em>waiting.</em></h1>
+        </div>
+        <p class="pets-intro-text">
+            Browse our collection of loving pets looking for their forever homes.
+            Use the filters to find a companion that fits your lifestyle.
+        </p>
+    </div>
+
+    <div class="pet-search-box">
+        <div class="search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="petSearch" placeholder="Search by pet name...">
+        </div>
+        <div class="search-field">
+            <i class="fa-solid fa-paw"></i>
+            <select id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="dog">Dogs</option>
+                <option value="cat">Cats</option>
+            </select>
+        </div>
+        <div class="search-field">
+            <i class="fa-solid fa-location-dot"></i>
+            <select id="locationFilter">
+                <option value="all">All Locations</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Surat">Surat</option>
+                <option value="Vadodara">Vadodara</option>
+                <option value="Rajkot">Rajkot</option>
+            </select>
+        </div>
+        <button class="search-submit" id="searchButton">Search Pets</button>
+    </div>
+
+    <div class="filter-row">
+        <div class="filter-buttons">
+            <button class="filter-button active" data-filter="all">All Pets</button>
+            <button class="filter-button" data-filter="dog">Dogs</button>
+            <button class="filter-button" data-filter="cat">Cats</button>
+            <button class="filter-button" data-filter="young">Young</button>
+        </div>
+        <span class="pet-count" id="petCount">Showing 6 pets</span>
+    </div>
+
+    <div class="pets-page-grid" id="petsGrid">
+
+        <article class="find-pet-card" data-name="bruno" data-type="dog" data-age="2" data-location="Ahmedabad">
+            <div class="find-pet-image">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=80" alt="Bruno">
+                <span class="available-tag">Available</span>
+                <button class="heart-button" aria-label="Add Bruno to favourites"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="find-pet-info">
+                <div class="find-pet-top"><div><h3>Bruno</h3><p>Labrador Retriever</p></div><span class="age-badge">2 yrs</span></div>
+                <div class="find-pet-details"><span><i class="fa-solid fa-location-dot"></i> Ahmedabad</span><span><i class="fa-solid fa-mars"></i> Male</span></div>
+                <a href="pet-details.html?pet=bruno" class="view-pet">Meet Bruno <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <article class="find-pet-card" data-name="luna" data-type="cat" data-age="1" data-location="Surat">
+            <div class="find-pet-image">
+                <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" alt="Luna">
+                <span class="available-tag">Available</span>
+                <button class="heart-button" aria-label="Add Luna to favourites"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="find-pet-info">
+                <div class="find-pet-top"><div><h3>Luna</h3><p>Domestic Shorthair</p></div><span class="age-badge">1 yr</span></div>
+                <div class="find-pet-details"><span><i class="fa-solid fa-location-dot"></i> Surat</span><span><i class="fa-solid fa-venus"></i> Female</span></div>
+                <a href="pet-details.html?pet=luna" class="view-pet">Meet Luna <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <article class="find-pet-card" data-name="milo" data-type="dog" data-age="3" data-location="Vadodara">
+            <div class="find-pet-image">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=700&q=80" alt="Milo">
+                <span class="available-tag">Available</span>
+                <button class="heart-button" aria-label="Add Milo to favourites"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="find-pet-info">
+                <div class="find-pet-top"><div><h3>Milo</h3><p>Beagle Mix</p></div><span class="age-badge">3 yrs</span></div>
+                <div class="find-pet-details"><span><i class="fa-solid fa-location-dot"></i> Vadodara</span><span><i class="fa-solid fa-mars"></i> Male</span></div>
+                <a href="pet-details.html?pet=milo" class="view-pet">Meet Milo <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <article class="find-pet-card" data-name="daisy" data-type="dog" data-age="4" data-location="Rajkot">
+            <div class="find-pet-image">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=700&q=80" alt="Daisy">
+                <span class="available-tag">Available</span>
+                <button class="heart-button" aria-label="Add Daisy to favourites"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="find-pet-info">
+                <div class="find-pet-top"><div><h3>Daisy</h3><p>Golden Retriever</p></div><span class="age-badge">4 yrs</span></div>
+                <div class="find-pet-details"><span><i class="fa-solid fa-location-dot"></i> Rajkot</span><span><i class="fa-solid fa-venus"></i> Female</span></div>
+                <a href="pet-details.html?pet=daisy" class="view-pet">Meet Daisy <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <article class="find-pet-card" data-name="oscar" data-type="dog" data-age="2" data-location="Ahmedabad">
+            <div class="find-pet-image">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=700&q=80" alt="Oscar">
+                <span class="available-tag">Available</span>
+                <button class="heart-button" aria-label="Add Oscar to favourites"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="find-pet-info">
+                <div class="find-pet-top"><div><h3>Oscar</h3><p>Golden Mix</p></div><span class="age-badge">2 yrs</span></div>
+                <div class="find-pet-details"><span><i class="fa-solid fa-location-dot"></i> Ahmedabad</span><span><i class="fa-solid fa-mars"></i> Male</span></div>
+                <a href="pet-details.html?pet=oscar" class="view-pet">Meet Oscar <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <article class="find-pet-card" data-name="nala" data-type="cat" data-age="2" data-location="Surat">
+            <div class="find-pet-image">
+                <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=700&q=80" alt="Nala">
+                <span class="available-tag">Available</span>
+                <button class="heart-button" aria-label="Add Nala to favourites"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="find-pet-info">
+                <div class="find-pet-top"><div><h3>Nala</h3><p>Tabby Cat</p></div><span class="age-badge">2 yrs</span></div>
+                <div class="find-pet-details"><span><i class="fa-solid fa-location-dot"></i> Surat</span><span><i class="fa-solid fa-venus"></i> Female</span></div>
+                <a href="pet-details.html?pet=nala" class="view-pet">Meet Nala <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <p class="no-results" id="noResults">No pets match your search. Please try another filter.</p>
+    </div>
+
+</div>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="../index.html" class="logo footer-logo"><span class="logo-mark">P</span><span>PawFinder</span></a>
+            <p>Connecting loving people with pets looking for a place to call home.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h4>Explore</h4>
+            <a href="pets.html">Find a Pet</a>
+            <a href="gallery.html">Pet Gallery</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-column">
+            <h4>Get Involved</h4>
+            <a href="adoption.html">Adopt a Pet</a>
+            <a href="gallery.html">Success Stories</a>
+        </div>
+        <div class="footer-column">
+            <h4>Contact</h4>
+            <a href="mailto:hello@pawfinder.com">hello@pawfinder.com</a>
+            <a href="tel:+919876543210">+91 98765 43210</a>
+            <span>Ahmedabad, Gujarat</span>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 PawFinder. All rights reserved.</p>
+        <p>Made with <i class="fa-solid fa-heart"></i> for pets.</p>
+    </div>
+</footer>
+
+<script>
+    const cards = document.querySelectorAll(".find-pet-card");
+    const searchInput = document.getElementById("petSearch");
+    const typeSelect = document.getElementById("typeFilter");
+    const locationSelect = document.getElementById("locationFilter");
+    const countText = document.getElementById("petCount");
+    const noResults = document.getElementById("noResults");
+    let activeFilter = "all";
+
+    function filterPets() {
+        const search = searchInput.value.toLowerCase().trim();
+        const type = typeSelect.value;
+        const location = locationSelect.value;
+        let visible = 0;
+
+        cards.forEach(card => {
+            const nameMatch = card.dataset.name.includes(search);
+            const typeMatch = type === "all" || card.dataset.type === type;
+            const locationMatch = location === "all" || card.dataset.location === location;
+            const buttonMatch =
+                activeFilter === "all" ||
+                card.dataset.type === activeFilter ||
+                (activeFilter === "young" && Number(card.dataset.age) <= 2);
+
+            const show = nameMatch && typeMatch && locationMatch && buttonMatch;
+            card.style.display = show ? "" : "none";
+            if (show) visible++;
+        });
+
+        countText.textContent = `Showing ${visible} ${visible === 1 ? "pet" : "pets"}`;
+        noResults.style.display = visible === 0 ? "block" : "none";
+    }
+
+    document.getElementById("searchButton").addEventListener("click", filterPets);
+    searchInput.addEventListener("input", filterPets);
+    typeSelect.addEventListener("change", filterPets);
+    locationSelect.addEventListener("change", filterPets);
+
+    document.querySelectorAll(".filter-button").forEach(button => {
+        button.addEventListener("click", () => {
+            document.querySelectorAll(".filter-button").forEach(item => item.classList.remove("active"));
+            button.classList.add("active");
+            activeFilter = button.dataset.filter;
+            filterPets();
+        });
+    });
+
+    document.querySelectorAll(".heart-button").forEach(button => {
+        button.addEventListener("click", () => {
+            const icon = button.querySelector("i");
+            icon.classList.toggle("fa-regular");
+            icon.classList.toggle("fa-solid");
+            button.style.color = icon.classList.contains("fa-solid") ? "#e67d61" : "";
+        });
+    });
+</script>
+
+</body>
+</html>

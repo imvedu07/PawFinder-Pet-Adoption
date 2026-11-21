@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PawFinder | Find a Friend for Life</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                <span class="logo-mark">P</span>
+                <span>PawFinder</span>
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="#discover">Discover</a>
+
+                <a href="pages/pets.html">
+                    Find a Pet
+                </a>
+
+                <a href="pages/gallery.html">
+                    Stories
+                </a>
+
+                <a href="pages/about.html">
+                    About
+                </a>
+
+                <a href="pages/contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+            <a href="pages/adoption.html" class="nav-button">
+                Start Adoption
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="discover">
+
+            <div class="hero-container">
+
+                <!-- LEFT CONTENT -->
+
+                <div class="hero-content">
+
+                    <p class="eyebrow">
+                        <span></span>
+                        PETS NEED PEOPLE. PEOPLE NEED PETS.
+                    </p>
+
+                    <h1>
+                        Find a
+                        <em>friend</em>
+                        for life.
+                    </h1>
+
+                    <p class="hero-description">
+                        Every pet deserves a loving home. Discover a new
+                        companion and give them the second chance they deserve.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="pages/pets.html" class="primary-button">
+                            Explore Pets
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                        <a href="#how-it-works" class="text-button">
+                            How adoption works
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+
+                    </div>
+
+                    <!-- HERO STATS -->
+
+                    <div class="hero-stats">
+
+                        <div class="stat">
+                            <strong>2,400+</strong>
+                            <span>Pets listed</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>1,800+</strong>
+                            <span>Happy adoptions</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>98</strong>
+                            <span>Partner shelters</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT IMAGE -->
+
+                <div class="hero-image-wrapper">
+
+                    <div class="hero-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=85"
+                            alt="Golden Retriever looking for a home">
+
+                    </div>
+
+                    <div class="image-label">
+
+                        <div>
+                            <strong>Bruno</strong>
+                            <span>Looking for a home</span>
+                        </div>
+
+                        <i class="fa-solid fa-heart"></i>
+
+                    </div>
+
+                    <div class="floating-note">
+
+                        <span class="note-icon">
+                            <i class="fa-solid fa-paw"></i>
+                        </span>
+
+                        <div>
+                            <strong>Every pet matters.</strong>
+                            <span>Make a difference today.</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEARCH CATEGORIES ================= -->
+
+        <section class="search-section">
+
+            <div class="search-container">
+
+                <div class="search-title">
+                    <span>01</span>
+                    <h2>Who are you looking for?</h2>
+                </div>
+
+                <div class="category-buttons">
+
+                    <a href="pages/pets.html" class="category active">
+                        <span class="category-icon">
+                            <i class="fa-solid fa-dog"></i>
+                        </span>
+
+                        <span>
+                            <strong>Dogs</strong>
+                            <small>1,240 friends</small>
+                        </span>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+
+                    <a href="pages/pets.html" class="category">
+
+                        <span class="category-icon">
+                            <i class="fa-solid fa-cat"></i>
+                        </span>
+
+                        <span>
+                            <strong>Cats</strong>
+                            <small>860 friends</small>
+                        </span>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </a>
+
+
+                    <a href="pages/pets.html" class="category">
+
+                        <span class="category-icon">
+                            <i class="fa-solid fa-paw"></i>
+                        </span>
+
+                        <span>
+                            <strong>All Pets</strong>
+                            <small>2,400+ friends</small>
+                        </span>
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURED PETS ================= -->
+
+        <section class="featured-section">
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-label">02 — MEET THEM</p>
+
+                        <h2>
+                            Looking for
+                            <em>you.</em>
+                        </h2>
+                    </div>
+
+                    <a href="pages/pets.html" class="outline-button">
+                        View all pets
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <!-- PET CARDS -->
+
+                <div class="pet-grid">
+
+
+                    <!-- PET 1 -->
+
+                    <article class="pet-card">
+
+                        <div class="pet-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=80"
+                                alt="Bruno the dog">
+
+                            <span class="pet-status">
+                                Available
+                            </span>
+
+                            <button class="favorite">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                        </div>
+
+                        <div class="pet-info">
+
+                            <div class="pet-name">
+
+                                <div>
+                                    <h3>Bruno</h3>
+                                    <span>Labrador Retriever</span>
+                                </div>
+
+                                <span class="pet-age">
+                                    2 yrs
+                                </span>
+
+                            </div>
+
+                            <div class="pet-meta">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Ahmedabad
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-mars"></i>
+                                    Male
+                                </span>
+
+                            </div>
+
+                            <a href="pages/pet-details.html?pet=bruno" class="pet-link">
+                                Meet Bruno
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PET 2 -->
+
+                    <article class="pet-card">
+
+                        <div class="pet-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80"
+                                alt="Luna the cat">
+
+                            <span class="pet-status">
+                                Available
+                            </span>
+
+                            <button class="favorite">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                        </div>
+
+                        <div class="pet-info">
+
+                            <div class="pet-name">
+
+                                <div>
+                                    <h3>Luna</h3>
+                                    <span>Domestic Shorthair</span>
+                                </div>
+
+                                <span class="pet-age">
+                                    1 yr
+                                </span>
+
+                            </div>
+
+                            <div class="pet-meta">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Surat
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-venus"></i>
+                                    Female
+                                </span>
+
+                            </div>
+
+                            <a href="pages/pet-details.html?pet=luna" class="pet-link">
+                                Meet Luna
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PET 3 -->
+
+                    <article class="pet-card">
+
+                        <div class="pet-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=700&q=80"
+                                alt="Milo the dog">
+
+                            <span class="pet-status">
+                                Available
+                            </span>
+
+                            <button class="favorite">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                        </div>
+
+                        <div class="pet-info">
+
+                            <div class="pet-name">
+
+                                <div>
+                                    <h3>Milo</h3>
+                                    <span>Beagle Mix</span>
+                                </div>
+
+                                <span class="pet-age">
+                                    3 yrs
+                                </span>
+
+                            </div>
+
+                            <div class="pet-meta">
+
+                                <span>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    Vadodara
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-mars"></i>
+                                    Male
+                                </span>
+
+                            </div>
+
+                            <a href="pages/pet-details.html?pet=milo" class="pet-link">
+                                Meet Milo
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+
+        <section class="story-section" id="how-it-works">
+
+            <div class="story-container">
+
+                <div class="story-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=900&q=85"
+                        alt="Person spending time with a pet">
+
+                    <div class="story-number">
+                        03
+                    </div>
+
+                </div>
+
+
+                <div class="story-content">
+
+                    <p class="section-label">
+                        03 — THE JOURNEY
+                    </p>
+
+                    <h2>
+                        Sometimes,
+                        <em>they rescue us.</em>
+                    </h2>
+
+                    <p>
+                        Adoption is more than bringing a pet home.
+                        It is about creating a bond, gaining a loyal
+                        companion, and giving an animal a place where
+                        they truly belong.
+                    </p>
+
+                    <div class="journey-list">
+
+                        <div class="journey-item">
+
+                            <span>01</span>
+
+                            <div>
+                                <strong>Discover</strong>
+                                <p>Find a pet that matches your lifestyle.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="journey-item">
+
+                            <span>02</span>
+
+                            <div>
+                                <strong>Connect</strong>
+                                <p>Learn their story and meet your companion.</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="journey-item">
+
+                            <span>03</span>
+
+                            <div>
+                                <strong>Adopt</strong>
+                                <p>Complete the application and welcome them home.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <a href="pages/adoption.html" class="primary-button">
+                        Start your journey
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="cta-section">
+
+            <div class="cta-container">
+
+                <div>
+
+                    <p class="section-label light">
+                        READY WHEN YOU ARE
+                    </p>
+
+                    <h2>
+                        Your new best friend
+                        <em>is waiting.</em>
+                    </h2>
+
+                </div>
+
+                <a href="pages/pets.html" class="cta-button">
+                    Find a Pet
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="index.html" class="logo footer-logo">
+
+                    <span class="logo-mark">P</span>
+                    <span>PawFinder</span>
+
+                </a>
+
+                <p>
+                    Connecting loving people with pets
+                    looking for a place to call home.
+                </p>
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Explore</h4>
+
+                <a href="pages/pets.html">Find a Pet</a>
+                <a href="pages/gallery.html">Pet Gallery</a>
+                <a href="pages/about.html">About Us</a>
+                <a href="pages/contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Get Involved</h4>
+
+                <a href="pages/adoption.html">Adopt a Pet</a>
+                <a href="pages/gallery.html">Success Stories</a>
+                <a href="#">Volunteer</a>
+                <a href="#">Donate</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Contact</h4>
+
+                <a href="mailto:hello@pawfinder.com">
+                    hello@pawfinder.com
+                </a>
+
+                <a href="tel:+919876543210">
+                    +91 98765 43210
+                </a>
+
+                <span>
+                    Ahmedabad, Gujarat
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 PawFinder. All rights reserved.
+            </p>
+
+            <p>
+                Made with <i class="fa-solid fa-heart"></i> for pets.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

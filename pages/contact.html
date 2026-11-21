@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | PawFinder</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* CONTACT PAGE */
+
+        .contact-page {
+            padding: 75px 30px 100px;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .contact-heading {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 65px;
+        }
+
+        .contact-heading h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(45px, 6vw, 70px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-top: 15px;
+        }
+
+        .contact-heading h1 em {
+            color: var(--coral);
+        }
+
+        .contact-heading p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 35px;
+            align-items: stretch;
+        }
+
+        /* CONTACT INFORMATION */
+
+        .contact-info {
+            background: var(--green);
+            color: white;
+            border-radius: 25px;
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-info h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .contact-info > p {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .contact-detail {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail-icon {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            color: var(--coral-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-detail h4 {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .contact-detail p,
+        .contact-detail a {
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+            line-height: 1.7;
+            text-decoration: none;
+        }
+
+        .contact-detail a:hover {
+            color: white;
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 25px;
+        }
+
+        .contact-socials a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .contact-socials a:hover {
+            background: var(--coral);
+            transform: translateY(-4px);
+        }
+
+        /* CONTACT FORM */
+
+        .contact-form-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 45px;
+        }
+
+        .contact-form-card h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .contact-form-card > p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            font-family: "DM Sans", sans-serif;
+            font-size: 13px;
+            background: #fff;
+            color: var(--green);
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--coral);
+            box-shadow: 0 0 0 3px rgba(230,125,97,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .contact-checkbox {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .contact-checkbox input {
+            margin-top: 3px;
+            accent-color: var(--green);
+        }
+
+        .contact-submit {
+            grid-column: 1 / -1;
+            border: none;
+            cursor: pointer;
+            padding: 16px 25px;
+            border-radius: 30px;
+            background: var(--green);
+            color: white;
+            font-family: "DM Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .contact-submit:hover {
+            background: var(--coral);
+            transform: translateY(-3px);
+        }
+
+        .contact-submit i {
+            margin-left: 8px;
+        }
+
+        /* CUTE CUSTOM POPUP */
+
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(23, 53, 44, 0.55);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-box {
+            background: #fffaf5;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 30px 35px;
+            border-radius: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(25px) scale(0.95);
+            transition: 0.35s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .popup-overlay.active .popup-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .popup-box::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #fce8df;
+            top: -100px;
+            right: -70px;
+            opacity: 0.7;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            border: none;
+            background: transparent;
+            color: #8a928c;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .popup-icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .popup-box.success .popup-icon {
+            background: #e0f1e5;
+            color: #2f8050;
+        }
+
+        .popup-box.error .popup-icon {
+            background: #fde6df;
+            color: #d86f58;
+        }
+
+        .popup-box h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            color: #17352c;
+            font-weight: 600;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .popup-box p {
+            color: #78827c;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .popup-paws {
+            color: #e9a58f;
+            font-size: 17px;
+            letter-spacing: 8px;
+            margin-bottom: 22px;
+        }
+
+        .popup-button {
+            border: none;
+            border-radius: 30px;
+            padding: 13px 35px;
+            background: #17352c;
+            color: white;
+            font-family: "DM Sans", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .popup-button:hover {
+            background: #e67d61;
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .contact-page {
+                padding: 50px 18px 70px;
+            }
+
+            .contact-form-card {
+                padding: 25px 20px;
+            }
+
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width,
+            .contact-checkbox,
+            .contact-submit {
+                grid-column: 1;
+            }
+
+            .contact-heading h1 {
+                font-size: 43px;
+            }
+
+            .contact-info h2,
+            .contact-form-card h2 {
+                font-size: 29px;
+            }
+
+            .popup-box {
+                padding: 35px 22px 30px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+                <span class="logo-mark">P</span>
+                <span>PawFinder</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="../index.html">Discover</a>
+                <a href="pets.html">Find a Pet</a>
+                <a href="gallery.html">Stories</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <a href="adoption.html" class="nav-button">
+                Start Adoption
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- CONTACT PAGE -->
+
+    <main>
+
+        <section class="contact-page">
+
+            <div class="contact-container">
+
+                <!-- PAGE HEADING -->
+
+                <div class="contact-heading">
+
+                    <p class="section-label">GET IN TOUCH</p>
+
+                    <h1>
+                        Let's start a
+                        <em>conversation.</em>
+                    </h1>
+
+                    <p>
+                        Have questions about adopting a pet or need
+                        some help? We'd love to hear from you.
+                        Send us a message and our team will be happy
+                        to help you.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-layout">
+
+                    <!-- CONTACT INFORMATION -->
+
+                    <div class="contact-info">
+
+                        <h2>Contact Information</h2>
+
+                        <p>
+                            Whether you have a question about a pet,
+                            the adoption process, or our website,
+                            feel free to reach out.
+                        </p>
+
+
+                        <div class="contact-detail">
+
+                            <div class="contact-detail-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+
+                            <div>
+                                <h4>Email Us</h4>
+                                <a href="mailto:hello@pawfinder.com">
+                                    hello@pawfinder.com
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-detail">
+
+                            <div class="contact-detail-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+
+                            <div>
+                                <h4>Call Us</h4>
+                                <a href="tel:+919876543210">
+                                    +91 98765 43210
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-detail">
+
+                            <div class="contact-detail-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+
+                            <div>
+                                <h4>Our Location</h4>
+                                <p>Ahmedabad, Gujarat, India</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-detail">
+
+                            <div class="contact-detail-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+
+                            <div>
+                                <h4>Working Hours</h4>
+                                <p>Monday - Saturday</p>
+                                <p>10:00 AM - 6:00 PM</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-socials">
+
+                            <a href="#" aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+
+                            <a href="#" aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+
+                            <a href="#" aria-label="Twitter">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTACT FORM -->
+
+                    <div class="contact-form-card">
+
+                        <h2>Send us a message</h2>
+
+                        <p>
+                            Fill out the form below and we'll be happy
+                            to assist you.
+                        </p>
+
+
+                        <form id="contactForm" class="contact-form" novalidate>
+
+                            <div class="form-group">
+
+                                <label for="contactName">Full Name *</label>
+
+                                <input
+                                    type="text"
+                                    id="contactName"
+                                    placeholder="Enter your full name"
+                                    autocomplete="name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="contactEmail">Email Address *</label>
+
+                                <input
+                                    type="email"
+                                    id="contactEmail"
+                                    placeholder="Enter your email"
+                                    autocomplete="email"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="contactPhone">Phone Number *</label>
+
+                                <input
+                                    type="tel"
+                                    id="contactPhone"
+                                    placeholder="Enter 10-digit mobile number"
+                                    maxlength="10"
+                                    autocomplete="tel"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="contactSubject">Subject *</label>
+
+                                <select id="contactSubject" required>
+
+                                    <option value="">Select a subject</option>
+                                    <option value="Adoption Inquiry">Adoption Inquiry</option>
+                                    <option value="Pet Information">Pet Information</option>
+                                    <option value="Website Support">Website Support</option>
+                                    <option value="Other">Other</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group full-width">
+
+                                <label for="contactMessage">Your Message *</label>
+
+                                <textarea
+                                    id="contactMessage"
+                                    placeholder="Write your message here..."
+                                    required></textarea>
+
+                            </div>
+
+
+                            <label class="contact-checkbox">
+
+                                <input type="checkbox" id="contactAgree">
+
+                                <span>
+                                    I confirm that the information provided
+                                    above is correct.
+                                </span>
+
+                            </label>
+
+
+                            <button type="submit" class="contact-submit">
+
+                                Send Message
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="../index.html" class="logo footer-logo">
+                    <span class="logo-mark">P</span>
+                    <span>PawFinder</span>
+                </a>
+
+                <p>
+                    Connecting loving people with pets
+                    looking for a place to call home.
+                </p>
+
+                <div class="social-links">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Explore</h4>
+
+                <a href="pets.html">Find a Pet</a>
+                <a href="gallery.html">Pet Gallery</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Get Involved</h4>
+
+                <a href="adoption.html">Adopt a Pet</a>
+                <a href="gallery.html">Success Stories</a>
+                <a href="#">Volunteer</a>
+                <a href="#">Donate</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>Contact</h4>
+
+                <a href="mailto:hello@pawfinder.com">
+                    hello@pawfinder.com
+                </a>
+
+                <a href="tel:+919876543210">
+                    +91 98765 43210
+                </a>
+
+                <span>Ahmedabad, Gujarat</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>© 2026 PawFinder. All rights reserved.</p>
+
+            <p>
+                Made with
+                <i class="fa-solid fa-heart"></i>
+                for pets.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- CUSTOM POPUP -->
+
+    <div class="popup-overlay" id="popupOverlay">
+
+        <div class="popup-box" id="popupBox">
+
+            <button class="popup-close" id="popupClose" aria-label="Close popup">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="popup-icon" id="popupIcon">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+
+            <div class="popup-paws">
+                <i class="fa-solid fa-paw"></i>
+                <i class="fa-solid fa-paw"></i>
+                <i class="fa-solid fa-paw"></i>
+            </div>
+
+            <h2 id="popupTitle">Oops!</h2>
+
+            <p id="popupMessage">
+                Something needs your attention.
+            </p>
+
+            <button class="popup-button" id="popupButton">
+                Okay, got it!
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT FORM VALIDATION -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const contactForm = document.getElementById("contactForm");
+
+            const popupOverlay = document.getElementById("popupOverlay");
+            const popupBox = document.getElementById("popupBox");
+            const popupIcon = document.getElementById("popupIcon");
+            const popupTitle = document.getElementById("popupTitle");
+            const popupMessage = document.getElementById("popupMessage");
+            const popupButton = document.getElementById("popupButton");
+            const popupClose = document.getElementById("popupClose");
+
+
+            // SHOW CUSTOM POPUP
+
+            function showPopup(type, title, message) {
+
+                popupBox.className = "popup-box " + type;
+
+                popupTitle.textContent = title;
+                popupMessage.textContent = message;
+
+                if (type === "success") {
+
+                    popupIcon.innerHTML =
+                        '<i class="fa-solid fa-heart"></i>';
+
+                    popupButton.textContent = "Yay! Thank you";
+
+                } else {
+
+                    popupIcon.innerHTML =
+                        '<i class="fa-solid fa-paw"></i>';
+
+                    popupButton.textContent = "Okay, I'll fix it";
+
+                }
+
+                popupOverlay.classList.add("active");
+
+            }
+
+
+            // CLOSE CUSTOM POPUP
+
+            function closePopup() {
+
+                popupOverlay.classList.remove("active");
+
+            }
+
+            popupButton.addEventListener("click", closePopup);
+
+            popupClose.addEventListener("click", closePopup);
+
+            popupOverlay.addEventListener("click", function (event) {
+
+                if (event.target === popupOverlay) {
+                    closePopup();
+                }
+
+            });
+
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+                    closePopup();
+                }
+
+            });
+
+
+            // CONTACT FORM VALIDATION
+
+            contactForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                const name = document.getElementById("contactName").value.trim();
+
+                const email = document.getElementById("contactEmail").value.trim();
+
+                const phone = document.getElementById("contactPhone").value.trim();
+
+                const subject = document.getElementById("contactSubject").value;
+
+                const message = document.getElementById("contactMessage").value.trim();
+
+                const agreement = document.getElementById("contactAgree").checked;
+
+
+                // NAME VALIDATION
+
+                if (name.length < 3) {
+
+                    showPopup(
+                        "error",
+                        "Oops, little mistake!",
+                        "Please enter your full name with at least 3 characters. 🐾"
+                    );
+
+                    document.getElementById("contactName").focus();
+
+                    return;
+                }
+
+
+                // EMAIL VALIDATION
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+
+                    showPopup(
+                        "error",
+                        "Check your email!",
+                        "That email doesn't look quite right. Please enter a valid email address. 💌"
+                    );
+
+                    document.getElementById("contactEmail").focus();
+
+                    return;
+                }
+
+
+                // PHONE VALIDATION
+
+                const phonePattern = /^[6-9]\d{9}$/;
+
+                if (!phonePattern.test(phone)) {
+
+                    showPopup(
+                        "error",
+                        "One more thing!",
+                        "Please enter a valid 10-digit Indian mobile number. 📱"
+                    );
+
+                    document.getElementById("contactPhone").focus();
+
+                    return;
+                }
+
+
+                // SUBJECT VALIDATION
+
+                if (subject === "") {
+
+                    showPopup(
+                        "error",
+                        "Choose a subject!",
+                        "Please select what you'd like to talk to us about. 💬"
+                    );
+
+                    document.getElementById("contactSubject").focus();
+
+                    return;
+                }
+
+
+                // MESSAGE VALIDATION
+
+                if (message.length < 10) {
+
+                    showPopup(
+                        "error",
+                        "Tell us a little more!",
+                        "Your message should have at least 10 characters so we can help you better. 💗"
+                    );
+
+                    document.getElementById("contactMessage").focus();
+
+                    return;
+                }
+
+
+                // CHECKBOX VALIDATION
+
+                if (!agreement) {
+
+                    showPopup(
+                        "error",
+                        "Almost there!",
+                        "Please confirm that the information you provided is correct. 🐶"
+                    );
+
+                    document.getElementById("contactAgree").focus();
+
+                    return;
+                }
+
+
+                // SUCCESS MESSAGE
+
+                showPopup(
+                    "success",
+                    "Yay! Message ready!",
+                    "Thank you for reaching out to PawFinder! Your form has been validated successfully. We're happy to hear from you! 🐾"
+                );
+
+                contactForm.reset();
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

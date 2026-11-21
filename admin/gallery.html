@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery Management | PawFinder Admin</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --green: #17352c;
+            --green-light: #2f5749;
+            --cream: #f7f3eb;
+            --cream-dark: #ebe4d6;
+            --coral: #e67d61;
+            --white: #ffffff;
+            --text: #17352c;
+            --muted: #737b76;
+            --border: #e5e2da;
+            --danger: #c95f5f;
+            --shadow: 0 12px 35px rgba(23, 53, 44, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .admin-layout {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 255px;
+            background: var(--green);
+            color: white;
+            padding: 28px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .brand {
+            padding: 0 14px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .brand h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            margin-bottom: 3px;
+        }
+
+        .brand span {
+            font-size: 12px;
+            color: #b9c7c0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            margin-top: 28px;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            color: #84988f;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            padding: 0 14px 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            text-decoration: none;
+            color: #c8d3ce;
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            transition: 0.25s ease;
+        }
+
+        .nav-link i {
+            width: 19px;
+            text-align: center;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .nav-link.active {
+            border-left: 3px solid var(--coral);
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .back-site {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c8d3ce;
+            text-decoration: none;
+            padding: 12px 14px;
+            font-size: 14px;
+            border-radius: 10px;
+        }
+
+        .back-site:hover {
+            background: rgba(255,255,255,0.08);
+            color: white;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            margin-left: 255px;
+            width: calc(100% - 255px);
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 76px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 38px;
+        }
+
+        .topbar-title h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+        }
+
+        .topbar-title p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .profile-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .profile-text strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .profile-text span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page-content {
+            padding: 35px 38px 50px;
+        }
+
+        .page-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .page-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 34px;
+            margin-bottom: 5px;
+        }
+
+        .page-heading p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .primary-btn {
+            border: none;
+            background: var(--green);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            transition: 0.25s ease;
+        }
+
+        .primary-btn:hover {
+            background: var(--green-light);
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .stat-icon {
+            width: 39px;
+            height: 39px;
+            border-radius: 10px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+        }
+
+        .stat-card h3 {
+            font-size: 27px;
+            margin-bottom: 3px;
+        }
+
+        .stat-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           TOOLBAR
+        ========================= */
+
+        .toolbar {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 42px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0 13px 0 38px;
+            outline: none;
+            color: var(--text);
+        }
+
+        .search-box input:focus {
+            border-color: var(--green-light);
+        }
+
+        .filter-select {
+            height: 42px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0 35px 0 12px;
+            color: var(--text);
+            background: white;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* =========================
+           GALLERY GRID
+        ========================= */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .gallery-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.25s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .gallery-image {
+            height: 210px;
+            position: relative;
+            overflow: hidden;
+            background: var(--cream-dark);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255,255,255,0.94);
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 9px;
+            border-radius: 20px;
+        }
+
+        .gallery-info {
+            padding: 17px;
+        }
+
+        .gallery-info h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .gallery-info p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .gallery-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gallery-status {
+            font-size: 11px;
+            color: #3d775d;
+            background: #edf6ef;
+            padding: 6px 9px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 7px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 7px;
+            cursor: pointer;
+            color: var(--green);
+            transition: 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--cream);
+        }
+
+        .action-btn.delete {
+            color: var(--danger);
+        }
+
+        /* =========================
+           EMPTY MESSAGE
+        ========================= */
+
+        .no-results {
+            display: none;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 14px;
+            text-align: center;
+            color: var(--muted);
+            margin-top: 10px;
+        }
+
+        .no-results i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--green);
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 31, 26, 0.58);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 23px;
+        }
+
+        .modal-header h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+        }
+
+        .close-modal {
+            width: 34px;
+            height: 34px;
+            border: none;
+            background: var(--cream);
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--green);
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 43px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0 12px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--green-light);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .secondary-btn {
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text);
+            padding: 11px 17px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .sidebar {
+                width: 210px;
+            }
+
+            .main-content {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+            }
+
+            .topbar,
+            .page-content {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .toolbar {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+                padding: 18px;
+            }
+
+            .admin-layout {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .brand {
+                border: none;
+                padding-bottom: 5px;
+            }
+
+            .topbar {
+                padding: 15px 20px;
+                height: auto;
+            }
+
+            .profile-text {
+                display: none;
+            }
+
+            .page-content {
+                padding: 25px 18px 40px;
+            }
+
+            .page-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-heading h2 {
+                font-size: 29px;
+            }
+
+            .topbar-title h1 {
+                font-size: 22px;
+            }
+
+            .gallery-image {
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <h2>PawFinder</h2>
+            <span>Admin Portal</span>
+        </div>
+
+        <nav class="nav-menu">
+
+            <div class="nav-title">Main Menu</div>
+
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-chart-pie"></i>
+                Dashboard
+            </a>
+
+            <a href="pets.html" class="nav-link">
+                <i class="fa-solid fa-paw"></i>
+                Manage Pets
+            </a>
+
+            <a href="applications.html" class="nav-link">
+                <i class="fa-solid fa-file-lines"></i>
+                Applications
+            </a>
+
+            <a href="gallery.html" class="nav-link active">
+                <i class="fa-solid fa-images"></i>
+                Gallery
+            </a>
+
+            <a href="announcements.html" class="nav-link">
+                <i class="fa-solid fa-bullhorn"></i>
+                Announcements
+            </a>
+
+            <a href="messages.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                Messages
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../index.html" class="back-site">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Website
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-title">
+                <h1>Gallery Management</h1>
+                <p>Manage PawFinder's photo collection.</p>
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    AD
+                </div>
+
+                <div class="profile-text">
+                    <strong>Admin</strong>
+                    <span>Administrator</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Gallery</h2>
+                    <p>Manage photos from pets, adoption stories and happy homes.</p>
+                </div>
+
+                <button class="primary-btn" onclick="openModal()">
+                    <i class="fa-solid fa-plus"></i>
+                    Add New Image
+                </button>
+
+            </div>
+
+
+            <!-- STATS -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                    </div>
+                    <h3>24</h3>
+                    <p>Total Images</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-house-heart"></i>
+                        </div>
+                    </div>
+                    <h3>12</h3>
+                    <p>Happy Homes</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-dog"></i>
+                        </div>
+                    </div>
+                    <h3>8</h3>
+                    <p>Dog Photos</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-cat"></i>
+                        </div>
+                    </div>
+                    <h3>4</h3>
+                    <p>Cat Photos</p>
+                </div>
+
+            </div>
+
+
+            <!-- TOOLBAR -->
+            <div class="toolbar">
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        id="gallerySearch"
+                        placeholder="Search gallery..."
+                    >
+                </div>
+
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">All Categories</option>
+                    <option value="happy">Happy Homes</option>
+                    <option value="dogs">Dogs</option>
+                    <option value="cats">Cats</option>
+                </select>
+
+            </div>
+
+
+            <!-- GALLERY -->
+            <div class="gallery-grid" id="galleryGrid">
+
+                <!-- CARD 1 -->
+                <div class="gallery-card" data-category="dogs" data-name="Bruno enjoying garden">
+
+                    <div class="gallery-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80"
+                            alt="Bruno enjoying the garden"
+                        >
+                        <span class="image-category">Dogs</span>
+                    </div>
+
+                    <div class="gallery-info">
+                        <h3>Bruno's Garden Day</h3>
+                        <p>Bruno enjoying his outdoor play time.</p>
+
+                        <div class="gallery-actions">
+                            <span class="gallery-status">Published</span>
+
+                            <div class="action-buttons">
+                                <button class="action-btn" onclick="editImage('Bruno’s Garden Day')">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="action-btn delete" onclick="deleteImage(this)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 2 -->
+                <div class="gallery-card" data-category="cats" data-name="Luna cat portrait">
+
+                    <div class="gallery-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=800&q=80"
+                            alt="Luna cat portrait"
+                        >
+                        <span class="image-category">Cats</span>
+                    </div>
+
+                    <div class="gallery-info">
+                        <h3>Luna's Portrait</h3>
+                        <p>A calm portrait of Luna waiting for her home.</p>
+
+                        <div class="gallery-actions">
+                            <span class="gallery-status">Published</span>
+
+                            <div class="action-buttons">
+                                <button class="action-btn" onclick="editImage('Luna’s Portrait')">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="action-btn delete" onclick="deleteImage(this)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 3 -->
+                <div class="gallery-card" data-category="happy" data-name="happy adoption family">
+
+                    <div class="gallery-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=800&q=80"
+                            alt="Happy adopted pet with family"
+                        >
+                        <span class="image-category">Happy Homes</span>
+                    </div>
+
+                    <div class="gallery-info">
+                        <h3>A New Beginning</h3>
+                        <p>One of our adopted pets enjoying a loving home.</p>
+
+                        <div class="gallery-actions">
+                            <span class="gallery-status">Published</span>
+
+                            <div class="action-buttons">
+                                <button class="action-btn" onclick="editImage('A New Beginning')">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="action-btn delete" onclick="deleteImage(this)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 4 -->
+                <div class="gallery-card" data-category="dogs" data-name="oscar dog">
+
+                    <div class="gallery-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80"
+                            alt="Oscar dog"
+                        >
+                        <span class="image-category">Dogs</span>
+                    </div>
+
+                    <div class="gallery-info">
+                        <h3>Oscar at Play</h3>
+                        <p>Oscar making the most of his afternoon.</p>
+
+                        <div class="gallery-actions">
+                            <span class="gallery-status">Published</span>
+
+                            <div class="action-buttons">
+                                <button class="action-btn" onclick="editImage('Oscar at Play')">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="action-btn delete" onclick="deleteImage(this)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 5 -->
+                <div class="gallery-card" data-category="cats" data-name="nala cat">
+
+                    <div class="gallery-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80"
+                            alt="Nala cat"
+                        >
+                        <span class="image-category">Cats</span>
+                    </div>
+
+                    <div class="gallery-info">
+                        <h3>Nala's Cozy Corner</h3>
+                        <p>Nala relaxing in her favourite sunny spot.</p>
+
+                        <div class="gallery-actions">
+                            <span class="gallery-status">Published</span>
+
+                            <div class="action-buttons">
+                                <button class="action-btn" onclick="editImage('Nala’s Cozy Corner')">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="action-btn delete" onclick="deleteImage(this)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 6 -->
+                <div class="gallery-card" data-category="happy" data-name="adoption day family">
+
+                    <div class="gallery-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80"
+                            alt="Happy adoption day"
+                        >
+                        <span class="image-category">Happy Homes</span>
+                    </div>
+
+                    <div class="gallery-info">
+                        <h3>Adoption Day</h3>
+                        <p>A special moment from an adoption day.</p>
+
+                        <div class="gallery-actions">
+                            <span class="gallery-status">Published</span>
+
+                            <div class="action-buttons">
+                                <button class="action-btn" onclick="editImage('Adoption Day')">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="action-btn delete" onclick="deleteImage(this)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="no-results" id="noResults">
+                <i class="fa-regular fa-images"></i>
+                <p>No gallery images found.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     ADD IMAGE MODAL
+========================== -->
+
+<div class="modal" id="imageModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h3>Add New Image</h3>
+
+            <button class="close-modal" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="imageForm">
+
+            <div class="form-group">
+                <label for="imageTitle">Image Title</label>
+                <input
+                    type="text"
+                    id="imageTitle"
+                    placeholder="e.g. Daisy's Happy Day"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="imageCategory">Category</label>
+
+                <select id="imageCategory" required>
+                    <option value="">Select category</option>
+                    <option value="dogs">Dogs</option>
+                    <option value="cats">Cats</option>
+                    <option value="happy">Happy Homes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+
+                <input
+                    type="url"
+                    id="imageUrl"
+                    placeholder="https://example.com/image.jpg"
+                    required
+                >
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="closeModal()"
+                >
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Image
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* =========================
+       SEARCH + FILTER
+    ========================== */
+
+    const searchInput = document.getElementById("gallerySearch");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const galleryCards = document.querySelectorAll(".gallery-card");
+    const noResults = document.getElementById("noResults");
+
+    function filterGallery() {
+
+        const searchValue = searchInput.value.toLowerCase().trim();
+        const categoryValue = categoryFilter.value;
+
+        let visibleCount = 0;
+
+        galleryCards.forEach(card => {
+
+            const name = card.dataset.name.toLowerCase();
+            const category = card.dataset.category;
+
+            const matchesSearch = name.includes(searchValue);
+            const matchesCategory =
+                categoryValue === "all" ||
+                category === categoryValue;
+
+            if (matchesSearch && matchesCategory) {
+                card.style.display = "block";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+        if (visibleCount === 0) {
+            noResults.style.display = "block";
+        } else {
+            noResults.style.display = "none";
+        }
+    }
+
+    searchInput.addEventListener("input", filterGallery);
+    categoryFilter.addEventListener("change", filterGallery);
+
+
+    /* =========================
+       MODAL
+    ========================== */
+
+    const modal = document.getElementById("imageModal");
+
+    function openModal() {
+        modal.classList.add("show");
+    }
+
+    function closeModal() {
+        modal.classList.remove("show");
+    }
+
+    window.addEventListener("click", function(event) {
+
+        if (event.target === modal) {
+            closeModal();
+        }
+
+    });
+
+
+    /* =========================
+       ADD IMAGE
+    ========================== */
+
+    document.getElementById("imageForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const title = document.getElementById("imageTitle").value.trim();
+
+        if (title === "") {
+            alert("Please enter an image title.");
+            return;
+        }
+
+        alert("Image added successfully! (Demo only)");
+
+        this.reset();
+        closeModal();
+
+    });
+
+
+    /* =========================
+       EDIT IMAGE
+    ========================== */
+
+    function editImage(title) {
+
+        alert(
+            "Edit option selected for: " +
+            title +
+            "\n\nThis is a demo admin interface."
+        );
+
+    }
+
+
+    /* =========================
+       DELETE IMAGE
+    ========================== */
+
+    function deleteImage(button) {
+
+        const confirmation = confirm(
+            "Are you sure you want to delete this image?"
+        );
+
+        if (confirmation) {
+
+            const card = button.closest(".gallery-card");
+
+            card.remove();
+
+            alert("Image deleted successfully!");
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
